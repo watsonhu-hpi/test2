@@ -12,4 +12,5 @@ public interface LoginAttemptRepository extends JpaRepository<LoginAttempt, Long
     List<LoginAttempt> findByUsernameAndSuccessful(String username, boolean successful);
     List<LoginAttempt> findByIpAddressAndAttemptTimeBetween(String ipAddress, LocalDateTime start, LocalDateTime end);
     List<LoginAttempt> findBySuccessfulOrderByAttemptTimeDesc(boolean successful);
+    List<LoginAttempt> findByAttemptTimeBefore(LocalDateTime cutoffDate);
 }
