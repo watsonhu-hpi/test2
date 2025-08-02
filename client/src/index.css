@@ -1,0 +1,48 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Segoe UI', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.emoji-picker-container {
+  position: absolute;
+  bottom: 50px;
+  right: 10px;
+  z-index: 100;
+}
+
+.user-avatar {
+  position: relative;
+}
+
+.user-status {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+}
+
+.status-online {
+  background-color: #44b700;
+}
+
+.status-offline {
+  background-color: #aaa;
+}
+
+/* For message input focus */
+.message-input:focus {
+  outline: none;
+}
