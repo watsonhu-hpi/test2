@@ -42,6 +42,9 @@ public class User {
     private String password;
 
     private String profilePicture;
+    
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Attachment> attachments = new HashSet<>();
 
     private String status;
 

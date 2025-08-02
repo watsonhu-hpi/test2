@@ -17,8 +17,14 @@ public interface AttachmentRepository extends JpaRepository<Attachment, Long> {
     @Query("SELECT a FROM Attachment a JOIN a.messages m WHERE m.chat.id = ?1")
     List<Attachment> findByChatId(Long chatId);
     
-    @Query("SELECT a FROM Attachment a JOIN a.messages m WHERE m.sender.id = ?1")
+    // Direct reference to user
     List<Attachment> findByUserId(Long userId);
+    
+    // For profile pictures
+    List<Attachment> findByUserIdAndIsProfilePicture(Long userId, boolean isProfilePicture);
+    
+    @Query("SELECT a FROM Attachment a JOIN a.messages m WHERE m.sender.id = ?1")
+    List<Attachment> findBySenderId(Long senderId);
     
     @Query("SELECT a FROM Attachment a WHERE a.type = ?1 AND EXISTS (SELECT m FROM a.messages m WHERE m.chat.id = ?2)")
     List<Attachment> findByTypeAndChatId(String attachmentType, Long chatId);

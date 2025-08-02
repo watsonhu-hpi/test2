@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Builder
@@ -24,10 +26,32 @@ public class Attachment {
     private String filePath;
     private Long fileSize;
     
+    // Store file content directly in the database
+    @Lob
+    @Column(columnDefinition = "BLOB")
+    private byte[] fileContent;
+    
     @Enumerated(EnumType.STRING)
     private AttachmentType type;
     
+    // Store thumbnail data directly in the database
+    @Lob
+    @Column(columnDefinition = "BLOB")
+    private byte[] thumbnailContent;
+    
     private String thumbnailUrl;
+    
+    // Reference to user (for profile pictures)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+    
+    // Reference to message (for shared files)
+    @ManyToMany(mappedBy = "attachments")
+    private Set<Message> messages = new HashSet<>();
+    
+    // Whether the attachment is a profile picture
+    private boolean isProfilePicture = false;
     
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
